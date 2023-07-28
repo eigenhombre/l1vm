@@ -1,5 +1,7 @@
 # l1vm
 
+<img src="l1vm.png" width="400">
+
 ![build](https://github.com/eigenhombre/l1vm/actions/workflows/build.yml/badge.svg)
 
 Work-in-progress small toy VM, possibly to be used as a backend for
