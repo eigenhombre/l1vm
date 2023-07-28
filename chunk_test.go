@@ -29,4 +29,8 @@ func TestChunk(t *testing.T) {
 	if c.hasMore() {
 		t.Error("chunk should not have more")
 	}
+	c.rewind()
+	if !c.hasMore() {
+		t.Error("chunk should have more")
+	}
 }

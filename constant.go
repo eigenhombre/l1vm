@@ -3,7 +3,7 @@ package main
 
 // for now, constants are just ints with integer index
 // in the constant table
-type constant int
+type constant value
 
 var constantTable = []constant{}
 
