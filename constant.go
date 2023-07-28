@@ -1,14 +1,6 @@
 // constant.go
 package main
 
-const (
-	op_nop = iota
-	op_ret
-	op_jmp
-	op_plus
-	op_times
-)
-
 // for now, constants are just ints with integer index
 // in the constant table
 type constant int
