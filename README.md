@@ -2,6 +2,9 @@
 
 ![build](https://github.com/eigenhombre/l1vm/actions/workflows/build.yml/badge.svg)
 
+Work-in-progress small toy VM, possibly to be used as a backend for
+[`l1`](https://github.com/eigenhombre/l1).
+
 # License: MIT
 
 Copyright (c) 2023 John Jacobsen
