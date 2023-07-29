@@ -3,20 +3,15 @@ package main
 import "fmt"
 
 func main() {
+	C := func(i value) Entry { return constantEntry(i) }
+	Op := func(o opcode) Entry { return opEntry(o) }
 	// Make our stack
 	s := newStack()
-	// Create a chunk of code
-	c := newChunk()
 	// Create code to push 1 and 2 on the stack, add them, print the
 	// result, and return:
-	c.add(constantEntry(1))
-	c.add(constantEntry(2))
-	c.add(opEntry(op_add))
-	c.add(opEntry(op_print))
-	c.add(opEntry(op_ret))
-	// Create a VM
+	c := newChunk(C(1), C(2), Op(op_add), Op(op_ret))
+	// Run the code in a new VM:
 	vm := newVM(c)
 	// Run the VM
-	vm.run(s)
-	fmt.Println("OK")
+	fmt.Println(vm.run(s))
 }

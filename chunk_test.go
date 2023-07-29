@@ -34,3 +34,15 @@ func TestChunk(t *testing.T) {
 		t.Error("chunk should have more")
 	}
 }
+
+func TestChunkVariadic(t *testing.T) {
+	c := newChunk(opEntry(op_ret), constantEntry(1))
+	if !c.hasMore() {
+		t.Error("chunk should have more")
+	}
+	c.next()
+	c.next()
+	if c.hasMore() {
+		t.Error("chunk should not have more")
+	}
+}

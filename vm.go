@@ -9,7 +9,7 @@ func newVM(c *chunk) *vm {
 	return &vm{code: c, ip: 0}
 }
 
-func (v *vm) execOpcode(o opcode, s *stack) {
+func (v *vm) execOpcode(o opcode, s *stack) *value {
 	switch o {
 	case op_add:
 		b, err := s.pop()
@@ -28,17 +28,28 @@ func (v *vm) execOpcode(o opcode, s *stack) {
 		}
 		println(v)
 	case op_ret:
-		return
+		v, err := s.pop()
+		if err != nil {
+			panic(err) // fixme
+		}
+		// End of processing may be signalled by returning a value:
+		return &v
 	}
+	return nil
 }
-func (v *vm) run(s *stack) {
+
+func (v *vm) run(s *stack) value {
 	for v.code.hasMore() {
 		e := v.code.next()
 		switch e.typ {
 		case typ_opcode:
-			v.execOpcode(e.opcode, s)
+			ret := v.execOpcode(e.opcode, s)
+			if ret != nil {
+				return *ret
+			}
 		case typ_constant:
 			s.push(e.value)
 		}
 	}
+	return 0
 }

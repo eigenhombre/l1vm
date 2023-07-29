@@ -18,8 +18,12 @@ type chunk struct {
 	index   int
 }
 
-func newChunk() *chunk {
-	return &chunk{[]Entry{}, 0}
+func newChunk(entries ...Entry) *chunk {
+	c := &chunk{}
+	if len(entries) > 0 {
+		c.entries = entries
+	}
+	return c
 }
 
 func (c *chunk) add(e Entry) {
